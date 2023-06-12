@@ -1,13 +1,11 @@
 //Функция для проверки длины строки.
-function checkingLengthString (text, maxLength) {
-  return text.length <= maxLength;
-}
+const checkingLengthString = (text, maxLength) => text.length <= maxLength;
 checkingLengthString('Kekc', 20);
 
 //Функция для проверки, является ли строка палиндромом
-function checkingPalindrome (text) {
-  const textWithoutSpace = text.replaceAll(' ', '');
+const checkingPalindrome = (text) => {
+  const textWithoutSpace = text.toLowerCase().replaceAll(' ', '');
   const textReverse = textWithoutSpace.split('').reverse().join('');
-  return textWithoutSpace.toLowerCase() === textReverse.toLowerCase();
-}
+  return textWithoutSpace === textReverse.toLowerCase();
+};
 checkingPalindrome('Лёша на полке клопа нашёл ');
