@@ -40,11 +40,9 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
-//Диапазон значений лайков
+//Функция возвращает количество лайков
 const minLikesAmount = 15;
 const maxLikesAmount = 200;
-
-//Функция возвращает количество лайков
 const getLikes = () => Math.floor(Math.random() * (maxLikesAmount - minLikesAmount + 1)) + minLikesAmount;
 
 const minAvatarNumber = 1;
