@@ -68,4 +68,4 @@ const createPost = new Array(25).fill(1).map((currentValue, index) => ({
   likes: getLikes(), //Количество лайков, поставленных фотографии.
   comments: createCommentUser[getRandomInteger(0, message.length - 1)]
 }));
-// console.log(createPost);
+createPost();
