@@ -55,11 +55,11 @@ const comments = new Array(30).fill(1).map((currentValue, index) => ({
 }));
 
 //создает массив описаний фотографий
-const posts = new Array(25).fill(1).map((currentValue, index) => ({
+// const posts = new Array(25).fill(1).map((currentValue, index) => ({
+new Array(25).fill(1).map((currentValue, index) => ({
   id: index + 1, //Идентификатор фотографии
   url: `photos/${index + 1}.jpg`, //Адрес картинки
   description: descriptions[getRandomNumberInRange(0, descriptions.length - 1)], //Описание фотографии.
   likes: getLikes(), //Количество лайков, поставленных фотографии.
-  comments: comments[getRandomNumberInRange(0, messages.length - 1)]
+  comments: comments[getRandomNumberInRange(0, comments.length - 1)]
 }));
-posts();
