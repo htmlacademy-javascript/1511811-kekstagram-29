@@ -1,11 +1,24 @@
-//Функция для проверки длины строки.
-const checkingLengthString = (text, maxLength) => text.length <= maxLength;
-checkingLengthString('Kekc', 20);
 
-//Функция для проверки, является ли строка палиндромом
-const checkingPalindrome = (text) => {
-  const textWithoutSpace = text.toLowerCase().replaceAll(' ', '');
-  const textReverse = textWithoutSpace.split('').reverse().join('');
-  return textWithoutSpace === textReverse.toLowerCase();
+const countsTimeMeet = (workDayStart, workDayEnd, meetingStart, duration) => {
+
+  const convertDate = (dateStr) => {
+    const [hours, minutes] = dateStr.split(':');
+    const convertedDate = new Date();
+    convertedDate.setUTCHours(hours);
+    convertedDate.setUTCMinutes(minutes);
+    convertedDate.setSeconds(0);
+    return convertedDate;
+  };
+
+  const workDay = convertDate(workDayEnd).getTime();
+  const meetingEnd = convertDate(meetingStart).getTime() + (duration * 60000);
+  const outrunMeet = convertDate(workDayStart).getTime() <= convertDate(meetingStart).getTime();
+
+  if (workDay >= meetingEnd && outrunMeet) {
+    return true;
+  } {
+    return false;
+  }
 };
-checkingPalindrome('Лёша на полке клопа нашёл ');
+countsTimeMeet('14:00', '17:30', '08:0', 90);
+

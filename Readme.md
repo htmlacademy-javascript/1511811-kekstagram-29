@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Александр Лапшин](https://up.htmlacademy.ru/javascript/29/user/1511811).
-* Наставник: [Андрей Волошко](https://htmlacademy.ru/profile/id1655583).
+* Наставник: [Давид Чачанов](https://htmlacademy.ru/profile/id2355549).
 
 ---
 
