@@ -14,11 +14,7 @@ const countsTimeMeet = (workDayStart, workDayEnd, meetingStart, duration) => {
   const meetingEnd = convertDate(meetingStart).getTime() + (duration * 60000);
   const outrunMeet = convertDate(workDayStart).getTime() <= convertDate(meetingStart).getTime();
 
-  if (workDay >= meetingEnd && outrunMeet) {
-    return true;
-  } {
-    return false;
-  }
+  return (workDay >= meetingEnd && outrunMeet);
 };
 countsTimeMeet('14:00', '17:30', '08:0', 90);
 
