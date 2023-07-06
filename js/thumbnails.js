@@ -1,5 +1,6 @@
 import {posts} from './util.js';
-
+import {userModalElement, modalPhoto, body, onPopupEscKeydown, photoLikesCount, photoCommentsCount, photoDescription, socialCommentsCount, socialCommentsLoader} from './pictures.js';
+import {renderComments} from './comments.js';
 // Находим шаблон для добавления фото
 const templatePicture = document.querySelector('#picture').content.querySelector('.picture');
 
@@ -19,8 +20,23 @@ posts.forEach((post) => {
 
   const comments = templateClone.querySelector('.picture__comments');
   comments.textContent = post.comments.length; //выводим кол-во комментариев
+
+  templateClone.addEventListener('click', () => {
+    modalPhoto.src = post.url;
+    photoLikesCount.textContent = post.likes;
+    photoCommentsCount.textContent = post.comments.length;
+    renderComments(post.comments.slice(0, 5));
+    photoDescription.textContent = post.description;
+    userModalElement.classList.remove('hidden'); //убираем класс у секции просмотра изображения
+    body.classList.add('modal-open'); //добавляем модальное окно чтобы не было скроллинга
+    socialCommentsCount.classList.add('hidden');
+    socialCommentsLoader.classList.add('hidden');
+    document.addEventListener('keydown', onPopupEscKeydown);
+  });
   fragment.appendChild(templateClone);
 });
 
 const pictures = document.querySelector('.pictures'); //находим блок куда будем вставлять фрагмент
 pictures.appendChild(fragment); //ставим в конец блока
+
+export {pictures};
