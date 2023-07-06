@@ -23,7 +23,11 @@ const posts = new Array(25).fill(1).map((currentValue, index) => ({
   url: `photos/${index + 1}.jpg`, //Адрес картинки
   description: descriptions[getRandomNumberInRange(0, descriptions.length - 1)], //Описание фотографии.
   likes: getLikes(), //Количество лайков, поставленных фотографии.
-  comments: comments[getRandomNumberInRange(0, comments.length - 1)]
+  comments: new Array(getRandomNumberInRange(5, 10)).fill(1).map(() =>
+    comments[getRandomNumberInRange(0, comments.length - 1)])
 }));
 
-export {comments, posts};
+const isEscapeKey = (evt) => evt.key === 'Escape';
+const isEnterKey = (evt) => evt.key === 'Enter';
+
+export {comments, posts, isEscapeKey, getRandomNumberInRange, isEnterKey};
