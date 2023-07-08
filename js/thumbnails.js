@@ -1,6 +1,11 @@
 import {posts} from './util.js';
 import {userModalElement, modalPhoto, body, onPopupEscKeydown, photoLikesCount, photoCommentsCount, photoDescription} from './pictures.js';
-import {commentsCount, commentsLoader, onCommentsLoaderClick} from './comments.js';
+import {
+  commentsCount,
+  commentsLoader,
+  onCommentsLoaderClick,
+  resetCommentShown
+} from './comments.js';
 // Находим шаблон для добавления фото
 const templatePicture = document.querySelector('#picture').content.querySelector('.picture');
 
@@ -27,6 +32,7 @@ posts.forEach((post) => {
     photoLikesCount.textContent = post.likes;
     photoCommentsCount.textContent = post.comments.length;
     photoDescription.textContent = post.description;
+    resetCommentShown();
     onCommentsLoaderClick();
     userModalElement.classList.remove('hidden'); //убираем класс у секции просмотра изображения
     body.classList.add('modal-open'); //добавляем модальное окно чтобы не было скроллинга

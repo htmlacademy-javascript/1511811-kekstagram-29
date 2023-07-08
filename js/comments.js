@@ -5,16 +5,15 @@ import { comments } from './util.js';
 // import {comments} from './util';
 const COMMENTS_STEP = 5;
 
-export let commentsShown = 0;
-// const allComments = [];
+let commentsShown = 0;
 
 //куда вставлять комментарии
 const commContainer = document.querySelector('.social__comments');
 //доступ к шаблону списка комментариев
 const commTemplate = document.querySelector('#comment').content.querySelector('.social__comment');
 
-export const commentsCount = document.querySelector('.social__comment-count');
-export const commentsLoader = document.querySelector('.comments-loader');
+const commentsCount = document.querySelector('.social__comment-count');
+const commentsLoader = document.querySelector('.comments-loader');
 
 //Отображает комментарии
 const renderComment = (comment, listFragment) => {
@@ -34,12 +33,7 @@ const renderComments = () => {
   commContainer.appendChild(listFragment); //в контейнер ставим фрагмент с комментами
 };
 
-export const onRenderComments = renderComments;
-
-//действия с кнопкой "Загрузить ещё"
-export const buttonDownloadMoreComments = document.querySelector('.social__comments-loader');
-
-const renderAllComments = () => {
+const onCommentsLoaderClick = () => {
   commentsShown += COMMENTS_STEP;
   if (commentsShown >= comments.length) {
     commentsLoader.classList.add('hidden');
@@ -47,14 +41,19 @@ const renderAllComments = () => {
   } else {
     commentsLoader.classList.remove('hidden');
   }
-  onRenderComments();
+  renderComments();
 
-  // commentsLoader.innerHTML = '';
-  // commentsLoader.append(fragment);
   commentsCount.textContent = commentsShown;
-  // photoCommentsCount.textContent = comments.length;
 };
-export const onCommentsLoaderClick = () => renderAllComments();
-commentsLoader.addEventListener('click', onCommentsLoaderClick);
 
-export{renderComment};
+const resetCommentShown = () => {
+  commentsShown = 0;
+};
+
+commentsLoader.addEventListener('click', onCommentsLoaderClick);
+export {
+  commentsLoader,
+  commentsCount,
+  resetCommentShown,
+  onCommentsLoaderClick
+};
