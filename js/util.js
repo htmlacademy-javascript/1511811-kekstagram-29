@@ -23,7 +23,7 @@ const posts = new Array(25).fill(1).map((currentValue, index) => ({
   url: `photos/${index + 1}.jpg`, //Адрес картинки
   description: descriptions[getRandomNumberInRange(0, descriptions.length - 1)], //Описание фотографии.
   likes: getLikes(), //Количество лайков, поставленных фотографии.
-  comments: new Array(getRandomNumberInRange(5, 10)).fill(1).map(() =>
+  comments: new Array(getRandomNumberInRange(5, 15)).fill(1).map(() =>
     comments[getRandomNumberInRange(0, comments.length - 1)])
 }));
 

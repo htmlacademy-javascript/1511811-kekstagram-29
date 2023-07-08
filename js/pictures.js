@@ -11,8 +11,6 @@ export const photoLikesCount = document.querySelector('.likes-count');
 export const photoCommentsCount = document.querySelector('.comments-count');
 export const photoCommentsList = document.querySelector('.social__comments');
 export const photoDescription = document.querySelector('.social__caption');
-export const socialCommentsCount = document.querySelector('.social__comment-count');
-export const socialCommentsLoader = document.querySelector('.comments-loader');
 
 //отслеживает keydown Escape для вызовa функции закрывающей попап
 export const onPopupEscKeydown = (evt) => {
