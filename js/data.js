@@ -1,5 +1,3 @@
-// import {comments, posts} from './util.js';
-
 //Oписание фотографии.
 const descriptions = [
   'Лицо человека, вышедшего из матрицы',
@@ -39,4 +37,12 @@ const maxLikesAmount = 200;
 const minAvatarNumber = 1;
 const maxAvatarNumber = 6;
 
-export {descriptions, messages, names, minLikesAmount, maxLikesAmount, minAvatarNumber, maxAvatarNumber};
+export {
+  descriptions,
+  messages,
+  names,
+  minLikesAmount,
+  maxLikesAmount,
+  minAvatarNumber,
+  maxAvatarNumber
+};
