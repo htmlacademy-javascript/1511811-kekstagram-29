@@ -11,7 +11,6 @@ let commentsShown = 0;
 const commContainer = document.querySelector('.social__comments');
 //доступ к шаблону списка комментариев
 const commTemplate = document.querySelector('#comment').content.querySelector('.social__comment');
-
 const commentsCount = document.querySelector('.social__comment-count');
 const commentsLoader = document.querySelector('.comments-loader');
 
@@ -33,17 +32,28 @@ const renderComments = () => {
   commContainer.appendChild(listFragment); //в контейнер ставим фрагмент с комментами
 };
 
+const hideShowMoreButton = () => {
+  commentsLoader.classList.add('hidden');
+};
+
+const showMoreButton = () => {
+  commentsLoader.classList.remove('hidden');
+};
+
+const setVisibleCommentsText = () => {
+  commentsCount.textContent = `${commentsShown} из ${comments.length}`;
+};
+
 const onCommentsLoaderClick = () => {
   commentsShown += COMMENTS_STEP;
   if (commentsShown >= comments.length) {
-    commentsLoader.classList.add('hidden');
+    hideShowMoreButton();
     commentsShown = comments.length;
   } else {
-    commentsLoader.classList.remove('hidden');
+    showMoreButton();
   }
   renderComments();
-
-  commentsCount.textContent = commentsShown;
+  setVisibleCommentsText();
 };
 
 const resetCommentShown = () => {
