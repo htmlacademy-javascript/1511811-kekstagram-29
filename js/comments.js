@@ -36,7 +36,7 @@ const showMoreButton = () => {
 };
 
 const setVisibleCommentsText = () => {
-  commentsCount.textContent = `${commentsShown} из ${comments.length}`;
+  commentsCount.textContent = `${commentsShown} из ${comments.length} комментариев`;
 };
 
 const setComments = (post) => {

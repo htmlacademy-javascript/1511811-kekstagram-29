@@ -1,5 +1,13 @@
 import {posts} from './util.js';
-import {userModalElement, modalPhoto, body, onPopupEscKeydown, photoLikesCount, photoCommentsCount, photoDescription} from './pictures.js';
+import {
+  userModalElement,
+  modalPhoto,
+  body,
+  onPopupEscKeydown,
+  photoLikesCount,
+  photoCommentsCount,
+  photoDescription
+} from './pictures.js';
 import {
   commentsCount,
   commentsLoader,
@@ -17,14 +25,10 @@ const fragment = document.createDocumentFragment();
 posts.forEach((post) => {
   const templateClone = templatePicture.cloneNode(true); //клонируем шаблон
   const image = templateClone.querySelector('img');
-
   image.setAttribute('src', post.url); //подставляем атрибут
-
   image.setAttribute('alt', post.description);
-
   const likes = templateClone.querySelector('.picture__likes');
   likes.textContent = post.likes; //выводим кол-во лайков
-
   const comments = templateClone.querySelector('.picture__comments');
   comments.textContent = post.comments.length; //выводим кол-во комментариев
 
@@ -36,8 +40,8 @@ posts.forEach((post) => {
     resetCommentShown();
     setComments(post);
     onCommentsLoaderClick();
-    userModalElement.classList.remove('hidden'); //убираем класс у секции просмотра изображения
-    body.classList.add('modal-open'); //добавляем модальное окно чтобы не было скроллинга
+    userModalElement.classList.remove('hidden');
+    body.classList.add('modal-open');
     commentsCount.classList.remove('hidden');
     commentsLoader.classList.remove('hidden');
     document.addEventListener('keydown', onPopupEscKeydown);

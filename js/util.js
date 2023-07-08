@@ -1,12 +1,20 @@
-import {descriptions, messages, names, minLikesAmount, maxLikesAmount, minAvatarNumber, maxAvatarNumber} from './data.js';
+import {
+  descriptions,
+  messages,
+  names,
+  minLikesAmount,
+  maxLikesAmount,
+  minAvatarNumber,
+  maxAvatarNumber
+} from './data.js';
 
 //Функция возвращает рандомное число в необходимом диапазоне
 const getRandomNumberInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-//Функция возвращает количество лайков
+//Функция возвращает рандомное количество лайков
 const getLikes = () => getRandomNumberInRange(minLikesAmount, maxLikesAmount);
 
-//Функция возвращает номер аватара
+//Функция возвращает рандомный номер аватара
 const getAvatarNumber = () => getRandomNumberInRange(minAvatarNumber, maxAvatarNumber);
 
 //Функция создает массив из списка комментаторов
@@ -30,4 +38,9 @@ const posts = new Array(25).fill(1).map((currentValue, index) => ({
 const isEscapeKey = (evt) => evt.key === 'Escape';
 const isEnterKey = (evt) => evt.key === 'Enter';
 
-export {posts, isEscapeKey, getRandomNumberInRange, isEnterKey};
+export {
+  posts,
+  isEscapeKey,
+  getRandomNumberInRange,
+  isEnterKey
+};
