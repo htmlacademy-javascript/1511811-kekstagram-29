@@ -30,4 +30,4 @@ const posts = new Array(25).fill(1).map((currentValue, index) => ({
 const isEscapeKey = (evt) => evt.key === 'Escape';
 const isEnterKey = (evt) => evt.key === 'Enter';
 
-export {comments, posts, isEscapeKey, getRandomNumberInRange, isEnterKey};
+export {posts, isEscapeKey, getRandomNumberInRange, isEnterKey};

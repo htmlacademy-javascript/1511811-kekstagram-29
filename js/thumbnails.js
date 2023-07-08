@@ -4,7 +4,8 @@ import {
   commentsCount,
   commentsLoader,
   onCommentsLoaderClick,
-  resetCommentShown
+  resetCommentShown,
+  setComments
 } from './comments.js';
 // Находим шаблон для добавления фото
 const templatePicture = document.querySelector('#picture').content.querySelector('.picture');
@@ -33,6 +34,7 @@ posts.forEach((post) => {
     photoCommentsCount.textContent = post.comments.length;
     photoDescription.textContent = post.description;
     resetCommentShown();
+    setComments(post);
     onCommentsLoaderClick();
     userModalElement.classList.remove('hidden'); //убираем класс у секции просмотра изображения
     body.classList.add('modal-open'); //добавляем модальное окно чтобы не было скроллинга

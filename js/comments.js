@@ -1,12 +1,7 @@
-// import { photoCommentsCount } from './pictures.js';
-import { comments } from './util.js';
-// import { photoCommentsCount } from './pictures.js';
-
-// import {comments} from './util';
 const COMMENTS_STEP = 5;
 
 let commentsShown = 0;
-
+let comments = [];
 //куда вставлять комментарии
 const commContainer = document.querySelector('.social__comments');
 //доступ к шаблону списка комментариев
@@ -44,6 +39,10 @@ const setVisibleCommentsText = () => {
   commentsCount.textContent = `${commentsShown} из ${comments.length}`;
 };
 
+const setComments = (post) => {
+  comments = post.comments;
+};
+
 const onCommentsLoaderClick = () => {
   commentsShown += COMMENTS_STEP;
   if (commentsShown >= comments.length) {
@@ -65,5 +64,6 @@ export {
   commentsLoader,
   commentsCount,
   resetCommentShown,
-  onCommentsLoaderClick
+  onCommentsLoaderClick,
+  setComments
 };
