@@ -1,0 +1,149 @@
+import {isEscapeKey} from './util.js';
+import {body} from './pictures.js';
+
+const uploadForm = document.querySelector('.img-upload__form');
+const editImageField = document.querySelector('.img-upload__overlay');
+const uploadImageField = document.querySelector('.img-upload__input');
+const buttonCloseUploadImageField = document.querySelector('.img-upload__cancel');
+const errorUploadImage = document.querySelector('#error').content.querySelector('.error');
+const successUploadImage = document.querySelector('#success').content.querySelector('.success');
+const hashtagField = document.querySelector('.text__hashtags');
+const descriptionField = document.querySelector('.text__description');
+
+const errorPopup = errorUploadImage.cloneNode(true);
+const successPopup = successUploadImage.cloneNode(true);
+
+const pristine = new Pristine(uploadForm, false);
+
+//Закрытие формы редактирования изображения по Escape
+const onDocumentEsc = (evt) => {
+  if (isEscapeKey) {
+    evt.preventDefault();
+    editImageField.classList.add('hidden');
+    body.classList.remove('modal-open');
+  }
+};
+
+const onUploadImagePopupEsc = (evt) => {
+  if (isEscapeKey) {
+    evt.preventDefault();
+    errorPopup.remove();
+  }
+};
+
+//убирает окно с ошибкой загрузки
+const exitErrorPopup = () => {
+  errorPopup.remove();
+  document.removeEventListener('keydown', onUploadImagePopupEsc);
+};
+
+//открывает окно с ошибкой загрузки
+const openErrorPopup = () => {
+  const errorButton = errorPopup.querySelector('.error__button');
+  body.append(errorPopup);
+  errorButton.addEventListener('click', exitErrorPopup);
+};
+
+//убирает окно с успешной загрузкой
+const removeSuccessPopup = () => {
+  successPopup.remove();
+  editImageField.classList.add('hidden');
+  document.removeEventListener('keydown', onUploadImagePopupEsc);
+};
+
+//открывает окно с успешной загрузкой
+const openSuccessPopup = () => {
+  const successButton = successPopup.querySelector('.success__button');
+  body.append(successPopup);
+  successButton.addEventListener('click', removeSuccessPopup);
+};
+
+//длина комментария не может составлять больше 140 символов;
+const validateDescription = (value) => {
+  const isTrue = value.trim().length <= 140;
+  return isTrue;
+};
+
+//Проверяет количество хэштегов (не более пяти)
+// хэш-теги нечувствительны к регистру: #ХэшТег и #хэштег считаются одним и тем же тегом;
+
+const validateHashtag = (value) => {
+  const hashtags = value.toLowerCase().split(' ');
+  if (hashtags.length > 5) {
+    return false;
+  }
+
+  //один и тот же хэш-тег не может быть использован дважды
+  const uniqueHashtag = new Set(hashtags);
+  if (uniqueHashtag.size !== hashtags.length) {
+    return false;
+  }
+  // хэш-тег начинается с символа # (решётка);
+  // хеш-тег не может состоять только из одной решётки;???
+  //строка после решётки должна состоять из букв и чисел и не может
+  //содержать пробелы, спецсимволы (#, @, $ и т. п.), символы пунктуации
+  //(тире, дефис, запятая и т. п.), эмодзи и т. д.;
+  // максимальная длина одного хэш-тега 20 символов, включая решётку;
+  // хэш-теги разделяются пробелами;
+  const regex = /^#[a-zA-Zа-я0-9]{1,19}$/;
+  const hasValidCharacters = hashtags.every((hashtagItem) => regex.test(hashtagItem));
+  return hasValidCharacters;
+};
+
+// если фокус находится в поле ввода хэш-тега, нажатие на Esc
+//не должно приводить к закрытию формы редактирования изображения.
+hashtagField.addEventListener('focus', () => {
+  document.removeEventListener('keydown', onDocumentEsc);
+});
+
+hashtagField.addEventListener('blur', () => {
+  document.addEventListener('keydown', onDocumentEsc);
+});
+
+//если фокус находится в поле ввода комментария, нажатие на Esc не должно приводить
+//к закрытию формы редактирования изображения.
+hashtagField.addEventListener('focus', () => {
+  document.removeEventListener('keydown', onDocumentEsc);
+});
+
+hashtagField.addEventListener('blur', () => {
+  document.addEventListener('keydown', onDocumentEsc);
+});
+
+
+pristine.addValidator(descriptionField, validateDescription, 'ошибка');
+pristine.addValidator(hashtagField, validateHashtag);
+
+//проверка загруженной для редактирования формы
+uploadForm.addEventListener('submit', (evt) =>{
+  evt.preventDefault();
+
+  const isValid = pristine.validate();
+  if (isValid) {
+    return openSuccessPopup;
+  } else {
+    return openErrorPopup;
+  }
+});
+
+//открытие формы редактирования изображения
+const openUploadImageForm = () => {
+  editImageField.classList.remove('hidden');
+  body.classList.add('modal-open');
+};
+
+//закрытие формы редактирования изображения
+const closeUploadImageForm = () => {
+  editImageField.classList.add('hidden');
+  body.classList.remove('modal-open');
+  document.removeEventListener('keydown', onDocumentEsc);
+};
+
+uploadImageField.addEventListener('change', () => {
+  openUploadImageForm();
+});
+
+buttonCloseUploadImageField.addEventListener('click', () => {
+  closeUploadImageForm();
+});
+
