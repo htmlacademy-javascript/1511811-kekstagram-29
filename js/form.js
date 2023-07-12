@@ -21,7 +21,7 @@ const pristine = new Pristine(uploadForm, {
 
 //Закрытие формы редактирования изображения по Escape
 const onDocumentEsc = (evt) => {
-  if (isEscapeKey) {
+  if (isEscapeKey(evt)) {
     evt.preventDefault();
     editImageField.classList.add('hidden');
     body.classList.remove('modal-open');
@@ -29,7 +29,7 @@ const onDocumentEsc = (evt) => {
 };
 
 const onUploadImagePopupEsc = (evt) => {
-  if (isEscapeKey) {
+  if (isEscapeKey(evt)) {
     evt.preventDefault();
     errorPopup.remove();
   }
@@ -63,10 +63,7 @@ const openSuccessPopup = () => {
 };
 
 //длина комментария не может составлять больше 140 символов;
-const validateDescription = (value) => {
-  const isTrue = value.trim().length <= 140;
-  return isTrue;
-};
+const validateDescription = (value) => value.trim().length <= 140;
 
 //Проверяет количество хэштегов (не более пяти)
 // хэш-теги нечувствительны к регистру: #ХэшТег и #хэштег считаются одним и тем же тегом;
@@ -106,11 +103,11 @@ hashtagField.addEventListener('blur', () => {
 
 //если фокус находится в поле ввода комментария, нажатие на Esc не должно приводить
 //к закрытию формы редактирования изображения.
-hashtagField.addEventListener('focus', () => {
+descriptionField.addEventListener('focus', () => {
   document.removeEventListener('keydown', onDocumentEsc);
 });
 
-hashtagField.addEventListener('blur', () => {
+descriptionField.addEventListener('blur', () => {
   document.addEventListener('keydown', onDocumentEsc);
 });
 
@@ -134,6 +131,7 @@ uploadForm.addEventListener('submit', (evt) =>{
 const openUploadImageForm = () => {
   editImageField.classList.remove('hidden');
   body.classList.add('modal-open');
+  document.addEventListener('keydown', onDocumentEsc);
 };
 
 //закрытие формы редактирования изображения
