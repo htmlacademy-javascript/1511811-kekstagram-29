@@ -13,7 +13,11 @@ const descriptionField = document.querySelector('.text__description');
 const errorPopup = errorUploadImage.cloneNode(true);
 const successPopup = successUploadImage.cloneNode(true);
 
-const pristine = new Pristine(uploadForm, false);
+const pristine = new Pristine(uploadForm, {
+  classTo: 'img-upload__field-wrapper',
+  errorTextParent: 'img-upload__field-wrapper',
+  errorTextClass: 'img-upload__field-wrapper',
+});
 
 //Закрытие формы редактирования изображения по Escape
 const onDocumentEsc = (evt) => {
@@ -134,6 +138,7 @@ const openUploadImageForm = () => {
 
 //закрытие формы редактирования изображения
 const closeUploadImageForm = () => {
+  uploadForm.reset();
   editImageField.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentEsc);
