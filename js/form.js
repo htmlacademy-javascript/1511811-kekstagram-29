@@ -1,5 +1,6 @@
 import {isEscapeKey} from './util.js';
 import {body} from './pictures.js';
+import {resetScale} from './scale.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const editImageField = document.querySelector('.img-upload__overlay');
@@ -137,6 +138,8 @@ const openUploadImageForm = () => {
 //закрытие формы редактирования изображения
 const closeUploadImageForm = () => {
   uploadForm.reset();
+  resetScale();
+  pristine.reset();
   editImageField.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentEsc);
