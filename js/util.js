@@ -1,54 +1,36 @@
-// import {
-//   descriptions,
-//   messages,
-//   names,
-//   minLikesAmount,
-//   maxLikesAmount,
-//   minAvatarNumber,
-//   maxAvatarNumber
-// } from './data.js';
-
-import {
-  getData
-} from './api.js';
-import { renderPosts } from './thumbnails.js';
+const ALERT_SHOW_TIME = 5000;
 
 //Функция возвращает рандомное число в необходимом диапазоне
 const getRandomNumberInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
-getData()
-  .then((data) => renderPosts(data));
-
-// //Функция возвращает рандомное количество лайков
-// const getLikes = () => getRandomNumberInRange(minLikesAmount, maxLikesAmount);
-
-// //Функция возвращает рандомный номер аватара
-// const getAvatarNumber = () => getRandomNumberInRange(minAvatarNumber, maxAvatarNumber);
-
-// //Функция создает массив из списка комментаторов
-// const comments = new Array(30).fill(1).map((currentValue, index) => ({
-//   id: index + 1,
-//   avatar: `img/avatar-${getAvatarNumber()}.svg`,
-//   message: messages[getRandomNumberInRange(0, messages.length - 1)],
-//   name: names[getRandomNumberInRange(0, names.length - 1)]
-// }));
-
-// //Функция создает массив описаний фотографий
-// const posts = new Array(25).fill(1).map((currentValue, index) => ({
-//   id: index + 1, //Идентификатор фотографии
-//   url: `photos/${index + 1}.jpg`, //Адрес картинки
-//   description: descriptions[getRandomNumberInRange(0, descriptions.length - 1)], //Описание фотографии.
-//   likes: getLikes(), //Количество лайков, поставленных фотографии.
-//   comments: new Array(getRandomNumberInRange(5, 15)).fill(1).map(() =>
-//     comments[getRandomNumberInRange(0, comments.length - 1)])
-// }));
 
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 const isEnterKey = (evt) => evt.key === 'Enter';
 
+const showAlert = (message) => {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = '100';
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = '0';
+  alertContainer.style.top = '0';
+  alertContainer.style.right = '0';
+  alertContainer.style.padding = '10px 3px';
+  alertContainer.style.fontSize = '30px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'red';
+
+  alertContainer.textContent = message;
+
+  document.body.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, ALERT_SHOW_TIME);
+};
+
 export {
   isEscapeKey,
   getRandomNumberInRange,
-  isEnterKey
+  isEnterKey,
+  showAlert
 };
