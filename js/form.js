@@ -122,9 +122,9 @@ uploadForm.addEventListener('submit', (evt) =>{
 
   const isValid = pristine.validate();
   if (isValid) {
-    return openSuccessPopup;
+    return openSuccessPopup();
   } else {
-    return openErrorPopup;
+    return openErrorPopup();
   }
 });
 
