@@ -3,7 +3,6 @@ const ALERT_SHOW_TIME = 5000;
 //Функция возвращает рандомное число в необходимом диапазоне
 const getRandomNumberInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-
 const isEscapeKey = (evt) => evt.key === 'Escape';
 const isEnterKey = (evt) => evt.key === 'Enter';
 

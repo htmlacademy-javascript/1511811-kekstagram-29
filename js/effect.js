@@ -92,3 +92,5 @@ effectsList.addEventListener('change', (evt) => {
 
   effectSlider.noUiSlider.updateOptions(optionTypes[evt.target.id]);
 });
+
+export {effectSlider};

@@ -1,6 +1,13 @@
 // import {isEscapeKey} from './util.js';
 // import {body} from './pictures.js';
 
+// const hideMessage = () => {
+//   const messageElement = document.querySelector('.success');
+//   messageElement.remove();
+//   document.removeEventListener('keydown', onDocumentKeydown);
+//   body.removeEventListener('click', onBodyClick);
+// };
+
 // const onBodyClick = (evt) => {
 //   if (
 //     (evt.target.closest('.success__inner')) ||
@@ -17,12 +24,3 @@
 //     hideMessage;
 //   }
 // };
-
-// const hideMessage = () => {
-//   const messageElement = document.querySelector('.success');
-//   messageElement.remove();
-//   document.removeEventListener('keydown', onDocumentKeydown);
-//   body.removeEventListener('click', onBodyClick);
-// };
-
-
