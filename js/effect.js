@@ -37,8 +37,13 @@ effectSlider.noUiSlider.on('update', () => {
 effectsList.addEventListener('change', (evt) => {
   sliderContainer.classList.remove('hidden');
 
-  if (evt.target.id === 'effect-chrome') {
-    effectSlider.noUiSlider.updateOptions({
+  if (evt.target.id === 'effect-none') {
+    imageElement.style.filter = 'initial';
+    sliderContainer.classList.add('hidden');
+  }
+
+  const optionTypes = {
+    'effect-chrome' : {
       range: {
         min: 0,
         max: 1,
@@ -46,11 +51,8 @@ effectsList.addEventListener('change', (evt) => {
 
       start: 1,
       step: 0.1,
-    });
-
-  } else if (evt.target.id === 'effect-sepia') {
-
-    effectSlider.noUiSlider.updateOptions({
+    },
+    'effect-sepia' : {
       range: {
         min: 0,
         max: 1,
@@ -58,11 +60,8 @@ effectsList.addEventListener('change', (evt) => {
 
       start: 1,
       step: 0.1,
-    });
-
-  } else if (evt.target.id === 'effect-marvin') {
-
-    effectSlider.noUiSlider.updateOptions({
+    },
+    'effect-marvin' : {
       range: {
         min: 0,
         max: 100,
@@ -70,11 +69,8 @@ effectsList.addEventListener('change', (evt) => {
 
       start: 100,
       step: 1,
-    });
-
-  } else if (evt.target.id === 'effect-phobos') {
-
-    effectSlider.noUiSlider.updateOptions({
+    },
+    'effect-phobos' : {
       range: {
         min: 0,
         max: 3,
@@ -82,11 +78,8 @@ effectsList.addEventListener('change', (evt) => {
 
       start: 3,
       step: 0.1,
-    });
-
-  } else if (evt.target.id === 'effect-heat') {
-
-    effectSlider.noUiSlider.updateOptions({
+    },
+    'effect-heat' : {
       range: {
         min: 1,
         max: 3,
@@ -94,9 +87,10 @@ effectsList.addEventListener('change', (evt) => {
 
       start: 3,
       step: 0.1,
-    });
-  } else if (evt.target.id === 'effect-none') {
-    imageElement.style.filter = 'initial';
-    sliderContainer.classList.add('hidden');
-  }
+    },
+  };
+
+  effectSlider.noUiSlider.updateOptions(optionTypes[evt.target.id]);
 });
+
+export {effectSlider};
