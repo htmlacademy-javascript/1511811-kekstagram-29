@@ -179,15 +179,3 @@ uploadForm.addEventListener('submit', (evt) =>{
     openErrorPopup();
   }
 });
-
-// function closeImageLoadModal () {
-//   uploadForm.reset();
-//   document.body.classList.remove('modal-open');
-//   editImageField.classList.add('hidden');
-//   document.removeEventListener('keydown', onDocumentEsc);
-
-//   setTimeout(() => {
-//     uploadForm.remove();
-//   }, 5000);
-// }
-
