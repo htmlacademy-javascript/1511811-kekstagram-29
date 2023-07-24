@@ -22,8 +22,16 @@ const fragment = document.createDocumentFragment();
 
 const pictures = document.querySelector('.pictures'); //находим блок куда будем вставлять фрагмент
 
+const removeAllPosts = () => {
+  const renderedPosts = pictures.querySelectorAll('.picture');
+  renderedPosts.forEach((renderedPost) => {
+    pictures.removeChild(renderedPost);
+  });
+};
+
 //делаем цикл для прохождения по данным
 const renderPosts = (posts) => {
+  removeAllPosts();
   posts.forEach((post) => {
     const templateClone = templatePicture.cloneNode(true); //клонируем шаблон
     const image = templateClone.querySelector('img');

@@ -4,6 +4,8 @@ import {resetScale} from './scale.js';
 import { sendData } from './api.js';
 import { effectSlider } from './effect.js';
 
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+
 const uploadForm = document.querySelector('.img-upload__form');
 const editImageField = document.querySelector('.img-upload__overlay');
 const uploadImageField = document.querySelector('.img-upload__input');
@@ -13,6 +15,10 @@ const successUploadImage = document.querySelector('#success').content.querySelec
 const hashtagField = document.querySelector('.text__hashtags');
 const descriptionField = document.querySelector('.text__description');
 const formSubmitButton = document.querySelector('#upload-submit');
+const fileChooser = document.querySelector('.img-upload__input');
+const photoPreview = document.querySelector('.img-upload__preview-file');
+const effectsPreviews = document.querySelectorAll('.effects__preview');
+
 
 const errorPopup = errorUploadImage.cloneNode(true);
 const successPopup = successUploadImage.cloneNode(true);
@@ -180,14 +186,18 @@ uploadForm.addEventListener('submit', (evt) =>{
   }
 });
 
-// function closeImageLoadModal () {
-//   uploadForm.reset();
-//   document.body.classList.remove('modal-open');
-//   editImageField.classList.add('hidden');
-//   document.removeEventListener('keydown', onDocumentEsc);
+//загружает фотографию выбранную пользователем
 
-//   setTimeout(() => {
-//     uploadForm.remove();
-//   }, 5000);
-// }
+fileChooser.addEventListener('change', () => {
+  const file = fileChooser.files[0];
+  const fileName = file.name.toLowerCase();
 
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+
+  if (matches) {
+    photoPreview.src = URL.createObjectURL(file);
+    effectsPreviews.forEach((preview) => {
+      preview.style.backgroundImage = `url('${photoPreview.src}')`;
+    });
+  }
+});
