@@ -15,7 +15,6 @@ const successUploadImage = document.querySelector('#success').content.querySelec
 const hashtagField = document.querySelector('.text__hashtags');
 const descriptionField = document.querySelector('.text__description');
 const formSubmitButton = document.querySelector('#upload-submit');
-const fileChooser = document.querySelector('.img-upload__input');
 const photoPreview = document.querySelector('.img-upload__preview-file');
 const effectsPreviews = document.querySelectorAll('.effects__preview');
 
@@ -188,8 +187,8 @@ uploadForm.addEventListener('submit', (evt) =>{
 
 //загружает фотографию выбранную пользователем
 
-fileChooser.addEventListener('change', () => {
-  const file = fileChooser.files[0];
+uploadImageField.addEventListener('change', () => {
+  const file = uploadImageField.files[0];
   const fileName = file.name.toLowerCase();
 
   const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
