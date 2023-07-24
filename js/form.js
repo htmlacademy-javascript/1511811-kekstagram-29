@@ -184,7 +184,6 @@ uploadForm.addEventListener('submit', (evt) =>{
     openErrorPopup();
   }
 });
-module12-task2
 
 //загружает фотографию выбранную пользователем
 uploadImageField.addEventListener('change', () => {
@@ -200,4 +199,3 @@ uploadImageField.addEventListener('change', () => {
     });
   }
 });
-master
