@@ -186,7 +186,6 @@ uploadForm.addEventListener('submit', (evt) =>{
 });
 
 //загружает фотографию выбранную пользователем
-
 uploadImageField.addEventListener('change', () => {
   const file = uploadImageField.files[0];
   const fileName = file.name.toLowerCase();
